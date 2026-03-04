@@ -1,0 +1,23 @@
+# --------------------------------------------
+# CITATION file created with {cffr} R package
+# See also: https://docs.ropensci.org/cffr/
+# --------------------------------------------
+ 
+cff-version: 1.2.0
+message: 'To cite package "MontyHall" in publications use:'
+type: software
+license: MIT
+title: 'MontyHall: Simulate the Monty Hall game'
+version: 0.0.1
+abstract: Simulate the Monty Hall game as illustration of simulation studies.
+authors:
+- family-names: Alderliesten
+  given-names: Jesse
+  email: jessealderliesten@hotmail.com
+  orcid: https://orcid.org/0000-0003-1132-4310
+contact:
+- family-names: Alderliesten
+  given-names: Jesse
+  email: jessealderliesten@hotmail.com
+  orcid: https://orcid.org/0000-0003-1132-4310
+
