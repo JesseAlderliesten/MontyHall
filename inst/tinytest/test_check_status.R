@@ -134,3 +134,7 @@ expect_error(
   check_status(status = rep(TRUE, 3L), chosen_door = numeric(0)),
   pattern = "checkinput::is_natural(chosen_door) is not TRUE", fixed = TRUE
 )
+
+
+#### Remove objects used in tests ####
+rm(status)

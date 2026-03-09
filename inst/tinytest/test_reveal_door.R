@@ -166,3 +166,8 @@ expect_error(
   reveal_door(status = rep(TRUE, 3L), prize = 1L, chosen_door = numeric(0)),
   pattern = "checkinput::is_natural(chosen_door) is not TRUE", fixed = TRUE
 )
+
+
+#### Remove objects used in tests ####
+rm(reveal_many, reveal_p1_c1, reveal_p1_c2, reveal_p1_c3, reveal_p2_c1,
+   reveal_p2_c2, reveal_p2_c3, reveal_p3_c1, reveal_p3_c2, reveal_p3_c3, status)
