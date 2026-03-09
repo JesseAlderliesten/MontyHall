@@ -1,53 +1,85 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+![](https://img.shields.io/github/r-package/v/JesseAlderliesten/MontyHall?color=blue)
 
 # MontyHall
 
-<!-- badges: start -->
+With `MontyHall` you can simulate the Monty Hall game as an illustration
+of simulation studies.
 
-# ![](https://img.shields.io/github/r-package/v/JesseAlderliesten/%3Cpkgname%3E)
-
-<!-- badges: end -->
-
-The goal of MontyHall is to …
+This package is still under development and thus *unstable*.
 
 ## Installation
 
-You can install the development version of MontyHall like so:
+You can install `MontyHall` from
+[GitHub](https://github.com/JesseAlderliesten/MontyHall) with:
 
 ``` r
-# FILL THIS IN! HOW CAN PEOPLE INSTALL YOUR DEV PACKAGE?
+if(!requireNamespace("remotes", quietly = TRUE)) {
+  install.packages(pkgs = "remotes", quiet = FALSE)
+}
+remotes::install_github(repo = "JesseAlderliesten/MontyHall", dependencies = TRUE,
+                        upgrade = FALSE, force = FALSE, quiet = FALSE,
+                        build_vignettes = TRUE, lib = NULL,
+                        verbose = getOption("verbose"))
 ```
 
-## Example
+For information about installing and configuring R and RStudio, see my
+repository
+[checkrpkgs](https://github.com/JesseAlderliesten/checkrpkgs).
 
-This is a basic example which shows you how to solve a common problem:
+## Examples
+
+Play a typical game a thousand times:
 
 ``` r
 library(MontyHall)
-## basic example code
+set.seed(314)
+
+many_games <- play_MontyHall_repeated(n_doors = 3L, n_prizes = 1L, n_games = 1000L)
+length(which(many_games$stick)) / length(many_games$stick)
+#> [1] 0.31
+length(which(many_games$change)) / length(many_games$change)
+#> [1] 0.69
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+Play a single game with a hundred doors and three prizes (NB. Currently
+only a single door is opened before the contestant gets the choice to
+stick to the originally chosen door or change to another door):
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+library(MontyHall)
+set.seed(314)
+
+play_MontyHall(n_doors = 10L, n_prizes = 3L)
+#> $stick
+#> [1] FALSE
+#> 
+#> $change
+#> [1] FALSE
+
+# Same as:
+set.seed(314)
+(setup <- setup_MontyHall(n_doors = 10L, n_prizes = 3L))
+#> $status
+#>  [1] TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE TRUE
+#> 
+#> $prize
+#> [1]  3  4 10
+(chosen_door <- choose_door(status = setup$status))
+#> [1] 7
+(new_status <- reveal_door(status = setup$status, prize = setup$prize,
+                           chosen_door = chosen_door))
+#>  [1]  TRUE FALSE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE  TRUE
+(outcome(status = new_status, prize = setup$prize,
+         chosen_door = chosen_door))
+#> $stick
+#> [1] FALSE
+#> 
+#> $change
+#> [1] FALSE
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+# Alternatives
 
-You can also embed plots, for example:
-
-<img src="man/figures/README-pressure-1.png" alt="" width="100%" />
-
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+Many packages for Monty Hall simulations exist on
+[GitHub](https://github.com/). I have not yet browsed through them.
