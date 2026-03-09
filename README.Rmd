@@ -40,22 +40,56 @@ repository [checkrpkgs](https://github.com/JesseAlderliesten/checkrpkgs).
 
 
 ## Examples
-Play a typical game a thousand times:
+Play a typical game a hundred times, and show the fraction of games won if the
+participant sticks to the original choice or changes to another door:
 
 ```{r play_MontyHall_repeated}
 library(MontyHall)
 set.seed(314)
 
-many_games <- play_MontyHall_repeated(n_doors = 3L, n_prizes = 1L, n_games = 1000L)
+many_games <- play_MontyHall_repeated(n_doors = 3, n_prizes = 1, n_games = 100)
 length(which(many_games$stick)) / length(many_games$stick)
 length(which(many_games$change)) / length(many_games$change)
 ```
 
-Play a single game with a hundred doors and three prizes (NB. Currently only a
-single door is opened before the contestant gets the choice to stick to the
-originally chosen door or change to another door):
+The results of `play_MontyHall()` are stochastic, i.e., every time you use it
+you will get different results (unless you run `set.seed(314)` that sets the
+random seed, which I used to make results reproducible). To show how the
+stochasticity influences the results, the simulation is repeated fifty times and
+the results are summarised:
 
-```{r play_MontyHall}
+```{r plot_MontyHall_repeated}
+library(MontyHall)
+set.seed(314)
+plot_MontyHall_repeated(n_doors = 3, n_prizes = 1, n_games = 100, n_trials = 50,
+                        sort_values = TRUE, show_ranges = TRUE,
+                        print_summary = TRUE)
+```
+
+The different steps in the game can also be performed individually to get more
+details. 
+
+```{r play_MontyHall, typical game}
+library(MontyHall)
+set.seed(314)
+
+play_MontyHall(n_doors = 3L, n_prizes = 1L)
+
+# Same as:
+set.seed(314)
+(setup <- setup_MontyHall(n_doors = 3L, n_prizes = 1L))
+(chosen_door <- choose_door(status = setup$status))
+(new_status <- reveal_door(status = setup$status, prize = setup$prize,
+                           chosen_door = chosen_door))
+(outcome(status = new_status, prize = setup$prize,
+         chosen_door = chosen_door))
+```
+
+Play a single game with a ten doors and three prizes.  
+NB. Currently only a single door is opened before the contestant gets the choice
+to stick to the originally chosen door or change to another door.
+
+```{r play_MontyHall, manydoors}
 library(MontyHall)
 set.seed(314)
 
