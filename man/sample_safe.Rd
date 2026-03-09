@@ -7,7 +7,8 @@
 sample_safe(x, size, replace = FALSE, prob = NULL)
 }
 \arguments{
-\item{x}{A vector of one or more elements from which to choose.}
+\item{x}{A vector of one or more elements from which to choose. Can be
+zero-length to return the object.}
 
 \item{size}{a non-negative integer giving the number of items to choose.}
 
@@ -34,6 +35,8 @@ samples are taken from \code{1:x}, e.g., \code{sample(3)} samples from \code{c(1
 }
 
 In contrast, function \code{sample_safe()} \emph{always} samples from \code{x}.
+
+See section \code{Details} of \code{\link[=sample]{sample()}} for further details.
 }
 \section{Programming notes}{
 

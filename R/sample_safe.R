@@ -1,7 +1,8 @@
 #' Safe drop-in replacement for sample
 #'
 #' @inheritParams base::sample
-#' @param x A vector of one or more elements from which to choose.
+#' @param x A vector of one or more elements from which to choose. Can be
+#' zero-length to return the object.
 #'
 #' @details
 #' The base-\R function [sample()] is *unsafe* if `x` can vary in length, as
@@ -14,6 +15,8 @@
 #'   `c(3, 4)`.
 #'
 #' In contrast, function `sample_safe()` *always* samples from `x`.
+#'
+#' See section `Details` of [sample()] for further details.
 #'
 #' @returns
 #' A vector of length `size` with elements drawn from `x`.
@@ -47,6 +50,8 @@
 #'
 #' @export
 sample_safe <- function(x, size, replace = FALSE, prob = NULL) {
+  stopifnot(is.null(prob) || checkinput::all_nonnegative(prob))
+
   length_x <- length(x)
   if(missing(size)) {
     size <- length_x
