@@ -8,6 +8,14 @@
 \description{
 Simulate the Monty Hall game as illustration of simulation studies.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://github.com/JesseAlderliesten/MontyHall}
+  \item Report bugs at \url{https://github.com/JesseAlderliesten/MontyHall/issues}
+}
+
+}
 \author{
 \strong{Maintainer}: Jesse Alderliesten \email{jessealderliesten@hotmail.com} (\href{https://orcid.org/0000-0003-1132-4310}{ORCID})
 
