@@ -29,9 +29,7 @@ check_status <- function(status, prize = NULL, chosen_door = NULL) {
   )
 
   if(!is.null(prize)) {
-    stopifnot(checkinput::all_natural(prize))
-    prize <- as.integer(round(prize))
-
+    prize <- checkinput::make_natural(prize, all = TRUE)
     stopifnot(
       "'prize' should not be larger than 'length(status)' to have the prize behind an existing door" =
         prize %in% seq_along(status),
@@ -41,9 +39,7 @@ check_status <- function(status, prize = NULL, chosen_door = NULL) {
   }
 
   if(!is.null(chosen_door)) {
-    stopifnot(checkinput::is_natural(chosen_door))
-    chosen_door <- as.integer(round(chosen_door))
-
+    chosen_door <- checkinput::make_natural(chosen_door, all = FALSE)
     stopifnot(
       "'chosen_door' should not be larger than 'length(status)' to choose an existing door" =
         chosen_door %in% seq_along(status),

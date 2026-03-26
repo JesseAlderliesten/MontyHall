@@ -26,8 +26,7 @@
 #' @export
 choose_door <- function(status, chosen_door = NULL) {
   if(!is.null(chosen_door)) {
-    stopifnot(checkinput::is_natural(chosen_door))
-    chosen_door <- as.integer(round(chosen_door))
+    chosen_door <- checkinput::make_natural(chosen_door, all = FALSE)
   }
   check_status(status = status, chosen_door = chosen_door)
 

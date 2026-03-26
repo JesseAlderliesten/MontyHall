@@ -1,6 +1,6 @@
 Package: MontyHall
 Title: Simulate the Monty Hall game
-Version: 0.0.1
+Version: 0.0.2
 Authors@R: 
     person("Jesse", "Alderliesten", , "jessealderliesten@hotmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0003-1132-4310"))
@@ -10,9 +10,15 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Imports: 
-    checkinput (>= 0.2.0),
-    progutils (>= 0.0.4)
+    checkinput (>= 0.3.0),
+    graphics,
+    progutils (>= 0.0.4),
+    stats
 Remotes: github::JesseAlderliesten/checkinput, github::JesseAlderliesten/progutils
-Suggests: tinytest
+Suggests: 
+    knitr,
+    rmarkdown,
+    tinytest
 URL: https://github.com/JesseAlderliesten/MontyHall
 BugReports: https://github.com/JesseAlderliesten/MontyHall/issues
+VignetteBuilder: knitr

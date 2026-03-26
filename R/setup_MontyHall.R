@@ -32,9 +32,8 @@
 #'
 #' @export
 setup_MontyHall <- function(n_doors = 3, n_prizes = 1) {
-  stopifnot(checkinput::is_natural(n_doors), checkinput::is_natural(n_prizes))
-  n_doors <- as.integer(round(n_doors))
-  n_prizes <- as.integer(round(n_prizes))
+  n_doors <- checkinput::make_natural(n_doors, all = FALSE)
+  n_prizes <- checkinput::make_natural(n_prizes, all = FALSE)
   stopifnot(n_doors >= 3L, n_prizes >= 1L, n_prizes <= n_doors - 2L)
 
   status <- rep(TRUE, n_doors)
