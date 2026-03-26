@@ -51,9 +51,10 @@ host revealed what was behind one of the closed doors
 Plot outcome of repeated Monty Hall games
 }
 \details{
-The plot shows the fraction of games won for each trial. Solid vertical lines
-indicate the median value of all trials and, if \code{show_ranges} is \code{TRUE},
-dotted vertical lines show the ranges. The colours indicate the used tactic.
+The plot shows the fraction of games won in each trial. Different colours
+indicate different tactics. Solid vertical lines indicate the median value of
+all trials and, if \code{show_ranges} is \code{TRUE}, dotted vertical lines show the
+ranges.
 
 It is easier to compare the overall chances of winning for the different
 tactics if \code{sort_values} is \code{TRUE}, but then the linkage between the tactics

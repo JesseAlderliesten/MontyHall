@@ -10,9 +10,10 @@
 #' games won for the different tactics?
 #'
 #' @details
-#' The plot shows the fraction of games won for each trial. Solid vertical lines
-#' indicate the median value of all trials and, if `show_ranges` is `TRUE`,
-#' dotted vertical lines show the ranges. The colours indicate the used tactic.
+#' The plot shows the fraction of games won in each trial. Different colours
+#' indicate different tactics. Solid vertical lines indicate the median value of
+#' all trials and, if `show_ranges` is `TRUE`, dotted vertical lines show the
+#' ranges.
 #'
 #' It is easier to compare the overall chances of winning for the different
 #' tactics if `sort_values` is `TRUE`, but then the linkage between the tactics
@@ -41,10 +42,10 @@
 plot_MontyHall_repeated <- function(n_doors = 3, n_prizes = 1, n_games = 100,
                                     n_trials = 100, sort_values = TRUE,
                                     show_ranges = TRUE, print_summary = TRUE) {
-  stopifnot(checkinput::is_natural(n_trials), checkinput::is_logical(sort_values),
+  n_trials <- checkinput::make_natural(n_trials, all = FALSE)
+  stopifnot(checkinput::is_logical(sort_values),
             checkinput::is_logical(sort_values),
             checkinput::is_logical(print_summary))
-  n_trials <- as.integer(round(n_trials))
 
   frac_won_stick <- vector(mode = "numeric", length = n_trials)
   frac_won_change <- frac_won_stick
