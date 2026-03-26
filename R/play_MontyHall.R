@@ -57,8 +57,7 @@ play_MontyHall <- function(n_doors = 3, n_prizes = 1) {
 #' @rdname play_MontyHall
 #' @export
 play_MontyHall_repeated <- function(n_doors = 3, n_prizes = 1, n_games = 100) {
-  stopifnot(checkinput::is_natural(n_games))
-  n_games <- as.integer(round(n_games))
+  n_games <- checkinput::make_natural(n_games, all = FALSE)
 
   stick <- rep(NA, n_games)
   change <- stick

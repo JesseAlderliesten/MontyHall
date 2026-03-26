@@ -35,9 +35,9 @@
 #'
 #' @export
 reveal_door <- function(status, prize, chosen_door) {
-  stopifnot(checkinput::all_natural(prize), checkinput::is_natural(chosen_door))
-  prize <- as.integer(round(prize))
-  chosen_door <- as.integer(round(chosen_door))
+  prize <- checkinput::make_natural(prize, all = TRUE)
+  chosen_door <- checkinput::make_natural(chosen_door, all = FALSE)
+
   check_status(status = status, prize = prize, chosen_door = chosen_door)
 
   ind_revealed <- sample_safe(
